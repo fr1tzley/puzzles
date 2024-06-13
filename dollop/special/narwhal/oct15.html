@@ -1,0 +1,48 @@
+<html >
+<head>
+    <title>Oct. 15</title>
+    <script>
+        window.onload = function() {
+          var context = new AudioContext();
+        }
+    </script>
+</head>
+<body bgcolor="black">
+    
+
+    
+    <audio id="bg" autoplay loop controls>
+        <source src="thunder-33569_whVd8DG0.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    
+    <img src="thunder.gif" id="display" style="display:none; margin-left:auto; margin-right:auto">
+
+    <button id="playButton" style="display:block; margin-left:auto; margin-right:auto">Toggle camera feed</button>
+
+    <script>
+       document.getElementById("playButton").addEventListener("click", function() {
+    // Get the audio and image elements
+    var audio = document.getElementById("bg");
+    var image = document.getElementById("display");
+
+    // Check if the audio is playing
+    if (!audio.paused) {
+        // Pause the audio
+        audio.pause();
+        audio.currentTime = 0; // Reset audio to the start
+
+        // Hide the image
+        image.style.display = "none";
+    } else {
+        // Play the audio
+        audio.play();
+
+        // Show the image
+        image.style.display = "block";
+    }
+});
+    </script>
+</script>
+</body> 
+</html>
