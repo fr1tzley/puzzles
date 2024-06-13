@@ -24,7 +24,6 @@
     height: 500px;
     border: 3px solid black;
     background-color: aliceblue;
-    position: relative;
     overflow: hidden;
         }
         .draggable {
@@ -32,7 +31,6 @@
     cursor: grab;
     width: 100px; /* Example width, adjust as needed */
     height: auto;
-    user-drag: none; 
     user-select: none;
 }
         .cube {
@@ -65,8 +63,10 @@
 
     draggables.forEach(draggable => {
         draggable.addEventListener('mousedown', (e) => {
-            let shiftX = e.clientX;//draggable.getBoundingClientRect().left;
-            let shiftY = e.clientY;//draggable.getBoundingClientRect().top;
+            e.preventDefault();
+            let shiftX = e.clientX - draggable.getBoundingClientRect().left;
+            let shiftY = e.clientY - draggable.getBoundingClientRect().top;
+
 
             draggable.style.cursor = 'grabbing';
             draggable.style.zIndex = 1000;
@@ -78,8 +78,8 @@
                 const containerRect = draggable.parentElement.getBoundingClientRect();
                 const draggableRect = draggable.getBoundingClientRect();
 
-                if (newX + draggable.getBoundingClientRect().left < 0) newX = 0;
-                if (newY + draggable.getBoundingClientRect().top< 0) newY = 0;
+                if (newX < 0) newX = 0;
+                if (newY < 0) newY = 0;
                 if (newX + draggableRect.width > containerRect.width) newX = containerRect.width - draggableRect.width;
                 if (newY + draggableRect.height > containerRect.height) newY = containerRect.height - draggableRect.height;
 
