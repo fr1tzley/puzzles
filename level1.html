@@ -24,7 +24,12 @@
   <body>
     <main>
         <h1>Level 1</h1>
+        <div id="error" style="display:none">
+        Nope! Try again.
+        </div>
         <div>
+
+
             
         <ol class="center">
             <li>John</li>
@@ -44,11 +49,17 @@
             function redirectToInputPage() {
                 const input = document.getElementById('userInput').value.trim();
                 if (input)  {
-                    if (input == "Freddie") {
+                    if (input == "Freddie" || input == "freddie") {
                         const url = "level2.html";
                         window.location.href = url;
                         return false; // Prevent form from submitting in the traditional way
+                    } else{
+                      const url = "404.html";
+                        window.location.href = url;
+                        return false; // Prevent form from submitting in the traditional way
                     }
+                    error = document.getElementById("error")
+                    error.style.display = "block"
                     return true;
                    
                 }
