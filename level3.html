@@ -39,25 +39,6 @@
         <div class="center">
             <img id="image" src ="error.png" style="display:none">
         </div>
-
-        <div class="center">
-            <form onsubmit="return redirectToInputPage();">
-                <input type="text" id="userInput" name="userInput" required>
-                <button type="submit">Submit</button>
-            </form>
-        </div>
-
-        <script>
-            function redirectToInputPage() {
-                const input = document.getElementById('userInput').value.trim();
-                if (input) {
-                    const url = `${input}.html`;
-                    window.location.href = url;
-                    return false; // Prevent form from submitting in the traditional way
-                }
-                return true; // Allow form to submit if input is empty (though this won't happen due to `required` attribute)
-            }
-        </script>
         
     
         <script>
