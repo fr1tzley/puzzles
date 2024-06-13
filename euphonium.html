@@ -65,8 +65,8 @@
 
     draggables.forEach(draggable => {
         draggable.addEventListener('mousedown', (e) => {
-            let shiftX = e.clientX - draggable.getBoundingClientRect().left;
-            let shiftY = e.clientY - draggable.getBoundingClientRect().top;
+            let shiftX = e.clientX;//draggable.getBoundingClientRect().left;
+            let shiftY = e.clientY;//draggable.getBoundingClientRect().top;
 
             draggable.style.cursor = 'grabbing';
             draggable.style.zIndex = 1000;
@@ -78,8 +78,8 @@
                 const containerRect = draggable.parentElement.getBoundingClientRect();
                 const draggableRect = draggable.getBoundingClientRect();
 
-                if (newX < 0) newX = 0;
-                if (newY < 0) newY = 0;
+                if (newX + draggable.getBoundingClientRect().left < 0) newX = 0;
+                if (newY + draggable.getBoundingClientRect().top< 0) newY = 0;
                 if (newX + draggableRect.width > containerRect.width) newX = containerRect.width - draggableRect.width;
                 if (newY + draggableRect.height > containerRect.height) newY = containerRect.height - draggableRect.height;
 
