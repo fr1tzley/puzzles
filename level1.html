@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>This is just a trivia question</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="icon" href="./favicon.ico" type="image/x-icon">
+    <style>
+        h1 {
+  text-align: center;
+}
+.center {
+  text-align: center;
+  list-style-position: inside;
+}
+.center-block {
+  margin: auto;
+  display: block;
+}
+    </style>
+  </head>
+  <body>
+    <main>
+        <h1>Level 1</h1>
+        <div>
+            
+        <ol class="center">
+            <li>John</li>
+            <li>Brian</li>
+            <li>Roger</li>
+            <li>?????</li>
+        </ol>
+        <input type="text" style="display: block" class="center-block"/>
+        </div> 
+        <div class="center">
+            <form onsubmit="return redirectToInputPage();">
+                <input type="text" id="userInput" name="userInput" required>
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+
+        <script>
+            function redirectToInputPage() {
+                const input = document.getElementById('userInput').value.trim();
+                if (input)  {
+                    if (input == "Freddie") {
+                        const url = "level2.html";
+                        window.location.href = url;
+                        return false; // Prevent form from submitting in the traditional way
+                    }
+                    return true;
+                   
+                }
+                return true; // Allow form to submit if input is empty (though this won't happen due to `required` attribute)
+            }
+        </script>
+    </main>
+	<script src="index.js"></script>
+  </body>
+</html>

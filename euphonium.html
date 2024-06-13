@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>What a palette!</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="icon" href="./favicon.ico" type="image/x-icon">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            display: flex;
+            margin-top: 20px; /* Adjust as needed for spacing from the top */
+        }
+        .drag_container {
+            width: 1000px;
+    height: 500px;
+    border: 3px solid black;
+    background-color: aliceblue;
+    position: relative;
+    overflow: hidden;
+        }
+        .draggable {
+    position: absolute;
+    cursor: grab;
+    width: 100px; /* Example width, adjust as needed */
+    height: auto;
+    user-drag: none; 
+    user-select: none;
+}
+        .cube {
+            width: 50px;
+            height: 50px;
+            margin: 5px;
+        }
+        .orange { background-color: orange; }
+        .green { background-color: green; }
+        .pink { background-color: pink; }
+        .dark-red { background-color: darkred; }
+    </style>
+  </head>
+  <body>
+    <main>
+        <h1>Level 4</h1>
+        <div class="container">
+            <h2>Answer:</h2>
+            <div class="cube orange"></div>
+            <div class="cube green"></div>
+            <div class="cube pink"></div>
+            <div class="cube pink"></div>
+            <div class="cube green"></div>
+            <div class="cube dark-red"></div>
+        </div>
+
+        <script>
+          document.addEventListener('DOMContentLoaded', () => {
+    const draggables = document.querySelectorAll('.draggable');
+
+    draggables.forEach(draggable => {
+        draggable.addEventListener('mousedown', (e) => {
+            let shiftX = e.clientX - draggable.getBoundingClientRect().left;
+            let shiftY = e.clientY - draggable.getBoundingClientRect().top;
+
+            draggable.style.cursor = 'grabbing';
+            draggable.style.zIndex = 1000;
+
+            const moveAt = (pageX, pageY) => {
+                let newX = pageX - shiftX;
+                let newY = pageY - shiftY;
+
+                const containerRect = draggable.parentElement.getBoundingClientRect();
+                const draggableRect = draggable.getBoundingClientRect();
+
+                if (newX < 0) newX = 0;
+                if (newY < 0) newY = 0;
+                if (newX + draggableRect.width > containerRect.width) newX = containerRect.width - draggableRect.width;
+                if (newY + draggableRect.height > containerRect.height) newY = containerRect.height - draggableRect.height;
+
+                draggable.style.left = newX + 'px';
+                draggable.style.top = newY + 'px';
+            };
+
+            const onMouseMove = (event) => {
+                moveAt(event.pageX, event.pageY);
+            };
+
+            document.addEventListener('mousemove', onMouseMove);
+
+            document.addEventListener('mouseup', () => {
+                document.removeEventListener('mousemove', onMouseMove);
+                draggable.style.cursor = 'grab';
+                draggable.style.zIndex = '';
+            }, { once: true });
+        });
+
+        draggable.ondragstart = () => {
+            return false;
+        };
+    });
+});
+
+            </script>
+
+            
+        <div class="drag_container">
+            
+            <img draggable="true" src="white.png" class="draggable" alt="Draggable Image 1" style="width:75px; height:75px;">
+            <img draggable="true" src="yellow.png" class="draggable" alt="Draggable Image 1" style="width:75px; height:75px;">
+            <img draggable="true" src="red.png" class="draggable" alt="Draggable Image 1" style="width:75px; height:75px;">
+            <img draggable="true" src="blue.png" class="draggable" alt="Draggable Image 1" style="width:75px; height:75px;">
+            <img draggable="true" src="black.png" class="draggable" alt="Draggable Image 1" style="width:75px; height:75px;">
+        </div>
+
+    
+        <div class="center">
+            <form onsubmit="return redirectToInputPage();">
+                <input type="text" id="userInput" name="userInput" required>
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+
+        <script>
+            function redirectToInputPage() {
+                const input = document.getElementById('userInput').value.trim();
+                if (input) {
+                    const url = `${input}/slide1.html`;
+                    window.location.href = url;
+                    return false; // Prevent form from submitting in the traditional way
+                }
+                return true; // Allow form to submit if input is empty (though this won't happen due to `required` attribute)
+            }
+        </script>
+    </main>
+	<script src="index.js"></script>
+  </body>
+</html>

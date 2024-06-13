@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>I'm pretty nice</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="icon" href="./favicon.ico" type="image/x-icon">
+    <style>
+        h1 {
+  text-align: center;
+}
+.center {
+  text-align: center;
+  list-style-position: inside;
+}
+.center-block {
+  margin: auto;
+  display: block;
+}
+    </style>
+  </head>
+  <body>
+    <main>
+        <h1>Level 3</h1>
+        <div class="center">
+            Great job. As a reward, I'll give you the way to the next level for free. Just click below!
+
+           
+        </div> 
+        <div class="center">
+            <button type="button" onclick="show()" class="center" id="btnID">
+                Show Prize!
+            </button>
+            
+        </div>
+
+        <div class="center">
+            <img id="image" src ="error.png" style="display:none">
+        </div>
+
+        <div class="center">
+            <form onsubmit="return redirectToInputPage();">
+                <input type="text" id="userInput" name="userInput" required>
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+
+        <script>
+            function redirectToInputPage() {
+                const input = document.getElementById('userInput').value.trim();
+                if (input) {
+                    const url = `${input}.html`;
+                    window.location.href = url;
+                    return false; // Prevent form from submitting in the traditional way
+                }
+                return true; // Allow form to submit if input is empty (though this won't happen due to `required` attribute)
+            }
+        </script>
+        
+    
+        <script>
+            function show() {
+                /* Access image by id and change 
+                the display property to block*/
+                document.getElementById('image')
+                    .style.display = "block";
+                document.getElementById('btnID')
+                    .style.display = "none";
+            }
+        </script>
+    </main>
+	<script src="index.js"></script>
+  </body>
+</html>
