@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>You must return to the source...</title>
+    <title>National symbol</title>
     <link rel="stylesheet" href="./style.css">
     <link rel="icon" href="./favicon.ico" type="image/x-icon">
     <style>
@@ -25,11 +25,32 @@
     </style>
   </head>
  
-  <!-- journal.txt -->
   <body>
     <h1 class="center">
-      Good job! That's everything so far.
+      Level 12
     </h1>
+    <div class="center">
+      <img src="flags.JPG" class="slide" style="margin-left:auto; margin-right:auto">
+    </div>
     
+
+    <div class="center">
+      <form onsubmit="return redirectToInputPage();">
+          <input type="text" id="userInput" name="userInput" required>
+          <button type="submit">Submit</button>
+      </form>
+  </div>
+
+  <script>
+      function redirectToInputPage() {
+          const input = document.getElementById('userInput').value.trim();
+          if (input) {
+              const url = `../../${input}/a.html`;
+              window.location.href = url;
+              return false; // Prevent form from submitting in the traditional way
+          }
+          return true; // Allow form to submit if input is empty (though this won't happen due to `required` attribute)
+      }
+  </script>
   </body>
 </html>
